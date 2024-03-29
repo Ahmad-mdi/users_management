@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\users\UserAddRequest;
 use App\Models\User;
 use App\Services\UserServiceImpl;
 use Illuminate\Http\Request;
@@ -23,9 +24,10 @@ class UserController extends Controller
         return $this->successResponse(200,$data, env('GET'));
     }
 
-    public function store(Request $request)
+    public function store(UserAddRequest $request): \Illuminate\Http\JsonResponse
     {
-        //
+        $add = $this->service->addUser($request);
+        return $this->successResponse(201,$add,env('POST'));
     }
 
     public function show(User $user)
