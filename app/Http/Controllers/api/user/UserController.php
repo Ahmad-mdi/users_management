@@ -21,13 +21,13 @@ class UserController extends Controller
     public function index(): \Illuminate\Http\JsonResponse
     {
         $data = $this->service->getAll();
-        return $this->successResponse(200,$data, env('GET'));
+        return $this->successResponse(200,$data, env('READ_DATA'));
     }
 
     public function store(UserAddRequest $request): \Illuminate\Http\JsonResponse
     {
         $add = $this->service->addUser($request);
-        return $this->successResponse(201,$add,env('POST'));
+        return $this->successResponse(201,$add,env('ADD_DATA'));
     }
 
     public function show(User $user)
