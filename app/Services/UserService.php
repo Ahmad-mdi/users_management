@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
-class UserServiceImpl implements UserService
+class UserService implements UserRepository
 {
-    public function getAll(): \Illuminate\Database\Eloquent\Collection
+    public function getAll()
     {
-        return User::all();
+        return User::paginate(50);
     }
 
     public function addUser(Request $request): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Builder

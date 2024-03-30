@@ -1,9 +1,8 @@
 <?php
-namespace App\Services;
-use App\Http\Controllers\Controller;
+namespace App\Repositories;
 use Illuminate\Http\Request;
 
-interface UserService {
+interface UserRepository {
     public function getAll();
     public function addUser(Request $request);
 }
