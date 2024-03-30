@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\users\UserAddRequest;
-use App\Http\Resources\api\users\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -22,17 +21,23 @@ class UserController extends Controller
     public function index(): \Illuminate\Http\JsonResponse
     {
         $data = $this->service->getAll();
-        return $this->successResponse(200,[
-            'users' => UserResource::collection($data),
-            'links' => UserResource::collection($data)->response()->getData()->links,
-            'meta' => UserResource::collection($data)->response()->getData()->meta,
-        ],env('READ_DATA'));
+        return $this->successResponse(200,
+            $this->paginationUsers($data),
+            $this->getMessageEnvFile('FIND_DATA'));
     }
 
     public function store(UserAddRequest $request): \Illuminate\Http\JsonResponse
     {
         $add = $this->service->addUser($request);
-        return $this->successResponse(201,$add,env('ADD_DATA'));
+        return $this->successResponse(201, $add, $this->getMessageEnvFile('ADD_DATA'));
+    }
+
+    public function findByUsername(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $listOfSearch = $this->service->findByUsername($request);
+        return $this->successResponse(201,
+            $this->paginationUsers($listOfSearch),
+            $this->getMessageEnvFile('FIND_DATA'));
     }
 
     public function show(User $user)

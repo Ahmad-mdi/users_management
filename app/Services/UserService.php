@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Resources\api\users\UserResource;
 use App\Models\User;
 use App\Repositories\UserRepository;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class UserService implements UserRepository
@@ -23,5 +25,12 @@ class UserService implements UserRepository
             'status' => $request->get('status'),
             'password' => bcrypt($request->get('password')),
         ]);
+    }
+
+    public function findByUsername(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $search = $request->get('search');
+        $users =  User::where('username', 'like', "%$search%")->paginate(50);
+        return UserResource::collection($users);
     }
 }
