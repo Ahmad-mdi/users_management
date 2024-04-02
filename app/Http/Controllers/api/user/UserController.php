@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\api\user;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\api\users\UserAddRequest;
+use App\Http\Requests\api\user\UserAddRequest;
 use App\Models\User;
-use App\Services\UserService;
+use App\Services\user\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -18,7 +18,7 @@ class UserController extends Controller
     }
 
 
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index()
     {
         $data = $this->service->getAll();
         return $this->successResponse(200,
@@ -26,13 +26,12 @@ class UserController extends Controller
             $this->getMessageEnvFile('FIND_DATA'));
     }
 
-    public function store(UserAddRequest $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request)
     {
-        $add = $this->service->addUser($request);
-        return $this->successResponse(201, $add, $this->getMessageEnvFile('ADD_DATA'));
+       //
     }
 
-    public function findByUsername(Request $request): \Illuminate\Http\JsonResponse
+    public function findByUsername(Request $request)
     {
         $listOfSearch = $this->service->findByUsername($request);
         return $this->successResponse(201,

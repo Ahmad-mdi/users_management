@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traits\ApiResponse;
-use App\Traits\Users\UserTrait;
+use App\Traits\User\UserTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;

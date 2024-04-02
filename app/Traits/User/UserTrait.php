@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits\Users;
+namespace App\Traits\User;
 
-use App\Http\Resources\api\users\UserResource;
+use App\Http\Resources\api\user\UserResource;
 
 trait UserTrait
 {
