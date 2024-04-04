@@ -38,4 +38,9 @@ class AuthController extends Controller
         return $this->service->changePassUser($request);
     }
 
+    public function logout(): JsonResponse
+    {
+        return $this->service->logoutUser();
+    }
+
 }

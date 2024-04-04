@@ -65,4 +65,11 @@ class AuthService implements AuthRepository
 
         return $this->successResponse(200, new UserResource($user), $this->getMessageEnvFile('CHANGED_PASSWORD'));
     }
+
+
+    public function logoutUser(): JsonResponse
+    {
+        auth()->user()->tokens()->delete();
+        return $this->successResponse(200,true,$this->getMessageEnvFile('USER_LOGOUT'));
+    }
 }
