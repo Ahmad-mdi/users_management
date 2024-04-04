@@ -1,6 +1,10 @@
 <?php
 namespace App\Traits;
 
+use App\Http\Resources\api\user\UserResource;
+use App\Models\User;
+use JetBrains\PhpStorm\Pure;
+
 trait ApiResponse{
 
     protected function getMessageEnvFile($key){
