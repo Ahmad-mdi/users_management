@@ -33,9 +33,9 @@ class AuthController extends Controller
     }
 
 
-    public function changePass(UserChangePassRequest $request): JsonResponse
+    public function changePassUser(UserChangePassRequest $request): JsonResponse
     {
-        return $this->service->changePass($request);
+        return $this->service->changePassUser($request);
     }
 
 }

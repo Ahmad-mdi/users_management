@@ -14,6 +14,11 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+    public function getRouteKeyName(): string
+    {
+        return 'username';
+    }
+
     protected $hidden = [
         'password',
         'remember_token',

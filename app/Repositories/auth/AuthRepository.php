@@ -11,5 +11,5 @@ interface AuthRepository
 {
     public function signupUser(Request $request);
     public function loginUser(UserLoginRequest $request);
-    public function changePass(USerChangePassRequest $request);
+    public function changePassUser(USerChangePassRequest $request);
 }

@@ -53,7 +53,7 @@ class AuthService implements AuthRepository
     }
 
 
-    public function changePass(Request $request): JsonResponse
+    public function changePassUser(Request $request): JsonResponse
     {
         $user = auth()->user();
 
