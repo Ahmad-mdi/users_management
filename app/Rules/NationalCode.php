@@ -24,6 +24,6 @@ class NationalCode implements Rule
 
     public function message(): string
     {
-        return 'invalid national code';
+        return 'کد ملی وارد شده صحیح نمیباشد';
     }
 }

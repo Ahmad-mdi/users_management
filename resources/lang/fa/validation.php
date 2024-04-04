@@ -115,6 +115,7 @@ return [
     */
 
     'attributes'           => [
+        'nationalCode'          => 'کد ملی',
         'name'                  => 'نام',
         'username'              => 'نام کاربری',
         'email'                 => 'ایمیل',
@@ -156,6 +157,8 @@ return [
         'newpassword_confirmation' => 'تکرار رمز عبور جدید',
         'longitude'             => 'طول جغرافیایی',
         'latitude'              => 'عرض جغرافیایی',
+        'firstname'              => 'نام',
+        'lastname'              => 'نام خانوادگی',
     ],
 
 ];
