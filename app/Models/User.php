@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $guarded = [];
+    protected $guarded = ['status']; //all property without status
 
     public function getRouteKeyName(): string
     {
