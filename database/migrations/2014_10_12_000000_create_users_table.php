@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('nationalCode')->unique();
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(0);
             $table->integer('try_count')->default(0);
             $table->timestamp('lock_time')->nullable();
             $table->string('password');
