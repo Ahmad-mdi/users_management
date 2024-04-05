@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use function PHPUnit\Framework\isEmpty;
 
 class AuthService implements AuthRepository
 {
@@ -18,18 +20,19 @@ class AuthService implements AuthRepository
 
     public function signupUser(Request $request): JsonResponse
     {
-        $add = User::query()->create([
-            'firstname' => $request->get('firstname'),
-            'lastname' => $request->get('lastname'),
-            'username' => $request->get('username'),
-            'nationalCode' => $request->get('nationalCode'),
-            'status' => $request->get('status'),
-            'password' => bcrypt($request->get('password')),
+        $user = User::query()->create([
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
+            'username' => $request->input('username'),
+            'nationalCode' => $request->input('nationalCode'),
+            'status' => $request->input('status'),
+            'password' => bcrypt($request->input('password')),
         ]);
-        $token = $add->createToken($add->username, ['*'], Carbon::now()->addDays(7))->plainTextToken;
+        $token = $user->createToken($user->username, ['*'], Carbon::now()->addDays(7))->plainTextToken;
+        Log::info($user.': '.$this->getMessageEnvFile('USER_SIGNUP'));
 
         return $this->successResponse(201, [
-            'userIfo' => new UserResource($add),
+            'userInfo' => new UserResource($user),
             'token' => $token,
         ], $this->getMessageEnvFile('ADD_DATA'));
     }
